@@ -1,0 +1,49 @@
+=================================================================
+XIONG GSE223138 - scRNA-seq QC, CLUSTERING, NK-CELL IDENTIFICATION
+Generated: 2026-10-09 12:11:09.385898
+=================================================================
+
+GSM6940192: loaded 12190 cells x 36601 genes.
+GSM6940193: loaded 8721 cells x 36601 genes.
+GSM6940194: loaded 15268 cells x 36601 genes.
+GSM6940195: loaded 9838 cells x 36601 genes.
+GSM6940196: loaded 10470 cells x 36601 genes.
+GSM6940197: loaded 10339 cells x 36601 genes.
+
+--- Merging 6 samples ---
+Joined per-sample count layers into one unified assay (required for cross-sample marker detection in Seurat v5).
+Merged object: 66826 cells x 36601 genes, 6 samples.
+Real disease-state breakdown (from GSE223138_sample_metadata.csv): 
+
+--- QC metrics ---
+GSM6940192: 10224 / 12190 cells pass QC (nFeature in [200, 2475], nCount in [-1149, 7123], percent.mt <= 6.6%)
+GSM6940193: 7240 / 8721 cells pass QC (nFeature in [482, 2084], nCount in [25, 5851], percent.mt <= 7%)
+GSM6940194: 12768 / 15268 cells pass QC (nFeature in [479, 1880], nCount in [423, 4805], percent.mt <= 5.8%)
+GSM6940195: 8333 / 9838 cells pass QC (nFeature in [530, 1988], nCount in [377, 5465], percent.mt <= 6.9%)
+GSM6940196: 9507 / 10470 cells pass QC (nFeature in [200, 2178], nCount in [-384, 5163], percent.mt <= 5%)
+GSM6940197: 7597 / 10339 cells pass QC (nFeature in [200, 2469], nCount in [-1035, 6161], percent.mt <= 6.4%)
+
+Wrote plots/qc_violin_pre_filter.png - INSPECT THIS before trusting the filtering below.
+
+Total cells before QC filtering: 66826
+Total cells after QC filtering:  55669 (83.3% retained)
+
+--- Normalization and dimensionality reduction ---
+PCA complete (30 PCs computed on 2000 variable features).
+
+Clustering complete: 18 clusters found (resolution = 0.5, 20 PCs - heuristic parameters).
+Wrote plots/umap_by_cluster.png, umap_by_sample.png, umap_by_disease_status.png.
+IMPORTANT: inspect umap_by_sample.png for batch effects - no batch-correction/integration (e.g. Harmony, CCA) has been applied in this script. If clusters separate mainly by sample rather than by biology, integration should be added before trusting cluster identities.
+
+--- NK-cell identification ---
+NK marker genes found in data: NKG7, GNLY, KLRD1, NCAM1, KLRB1, GZMB, PRF1, FCGR3A (8 / 8 expected)
+T-cell marker genes found in data: CD3D, CD3E, CD3G (3 / 3 expected)
+
+Per-cluster NK/T-cell module scores (results/qc/xiong_scrna/cluster_nk_tcell_scores.csv):
+
+Cluster(s) called as NK-cell candidates (NK score > median AND T-cell score <= median): 12, 3, 13
+Wrote plots/umap_nk_score.png and plots/umap_nk_candidate_calls.png.
+
+NK-candidate cell counts per sample (results/qc/xiong_scrna/nk_cell_counts_by_sample.csv):
+
+--- Top marker genes per cluster (for manual audit) ---

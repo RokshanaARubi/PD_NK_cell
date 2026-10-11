@@ -1,0 +1,60 @@
+=================================================================
+PD-NK Explorer :: Dataset Inspection Report
+Generated: 2026-10-02 04:01:24.666432
+Project root: D:/academics/L4S1/r/PD-NK-Explorer/PD-NK-Explorer
+=================================================================
+
+Wrote: results/data_inspection/dataset_file_inventory.csv (22 files across all datasets)
+
+-----------------------------------------------------------------
+XIONG ET AL. 2024 - INSPECTION
+-----------------------------------------------------------------
+Files found: 15
+  - data/xiong/GPL20301.soft.gz | ext=gz | size=7.64 MB | role_guess=possible_platform_annotation; geo_series_level_file
+  - data/xiong/GSE223138_sample_metadata.csv | ext=csv | size=13.70 KB | role_guess=possible_metadata
+  - data/xiong/GSE223138_series_matrix.txt.gz | ext=gz | size=3.25 KB | role_guess=possible_expression_matrix; geo_series_level_file
+  - data/xiong/raw_10x/GSM6940192_16_barcodes.tsv.gz | ext=gz | size=57.21 KB | role_guess=10x_barcodes
+  - data/xiong/raw_10x/GSM6940192_16_features.tsv.gz | ext=gz | size=325.62 KB | role_guess=10x_features_genes
+  - data/xiong/raw_10x/GSM6940192_16_matrix.mtx.gz | ext=gz | size=58.91 MB | role_guess=10x_sparse_matrix; possible_expression_matrix
+  - data/xiong/raw_10x/GSM6940193_17_barcodes.tsv.gz | ext=gz | size=41.92 KB | role_guess=10x_barcodes
+  - data/xiong/raw_10x/GSM6940193_17_features.tsv.gz | ext=gz | size=325.62 KB | role_guess=10x_features_genes
+  - data/xiong/raw_10x/GSM6940193_17_matrix.mtx.gz | ext=gz | size=42.19 MB | role_guess=10x_sparse_matrix; possible_expression_matrix
+  - data/xiong/raw_10x/GSM6940194_19_barcodes.tsv.gz | ext=gz | size=70.49 KB | role_guess=10x_barcodes
+  - data/xiong/raw_10x/GSM6940194_19_features.tsv.gz | ext=gz | size=325.62 KB | role_guess=10x_features_genes
+  - data/xiong/raw_10x/GSM6940194_19_matrix.mtx.gz | ext=gz | size=72.27 MB | role_guess=10x_sparse_matrix; possible_expression_matrix
+  - data/xiong/raw_10x/GSM6940195_20_barcodes.tsv.gz | ext=gz | size=46.88 KB | role_guess=10x_barcodes
+  - data/xiong/raw_10x/GSM6940195_20_features.tsv.gz | ext=gz | size=325.62 KB | role_guess=10x_features_genes
+  - data/xiong/raw_10x/GSM6940195_20_matrix.mtx.gz | ext=gz | size=47.17 MB | role_guess=10x_sparse_matrix; possible_expression_matrix
+  Preview of data/xiong/GSE223138_sample_metadata.csv:
+    Header: "title","geo_accession","status","submission_date","last_update_date","type","channel_count","source_name_ch1","organism_ch1","characteristics_ch1","characteristics_ch1.1","characteristics_ch1.2","growth_protocol_ch1","molecule_ch1","extract_protocol_ch1","extract_protocol_ch1.1","taxid_ch1","description","data_processing","data_processing.1","data_processing.2","platform_id","contact_name","contact_email","contact_phone","contact_institute","contact_address","contact_city","contact_state","contact_zip/postal_code","contact_country","data_row_count","instrument_model","library_selection","library_source","library_strategy","relation","relation.1","supplementary_file_1","supplementary_file_2","supplementary_file_3","cell type:ch1","disease state:ch1","tissue:ch1"
+    Guessed delimiter: ',' | Guessed n_cols: 44
+  Metadata keyword search hits:
+    cell.?type -> cell type:ch1
+
+-----------------------------------------------------------------
+MOQUIN-BEAUDRY ET AL. 2024/2025 - INSPECTION
+-----------------------------------------------------------------
+Files found: 2
+  - data/moquin_beaudry/moquin_beaudry_SRA_run_metadata.csv | ext=csv | size=24.10 KB | role_guess=possible_metadata
+  - data/moquin_beaudry/README_moquin_beaudry_ACCESS_NOTES.txt | ext=txt | size=1014.00 B | role_guess=supplementary_or_admin_file
+  Format classification: OTHER / NOT VERIFIED - could not confidently classify based on filenames
+  Preview of data/moquin_beaudry/moquin_beaudry_SRA_run_metadata.csv:
+    Header: "sra_uid","experiment","run_accession"
+  Metadata keyword search: no matches found in available column names.
+
+-----------------------------------------------------------------
+GSE100054 - INSPECTION
+-----------------------------------------------------------------
+Files found: 5
+  - data/gse100054/GPL23126.soft.gz | ext=gz | size=1021.98 MB | role_guess=possible_platform_annotation; geo_series_level_file
+  - data/gse100054/GSE100054_expression_matrix.csv | ext=csv | size=22.64 MB | role_guess=possible_expression_matrix
+  - data/gse100054/GSE100054_platform_annotation.csv | ext=csv | size=1.00 GB | role_guess=possible_platform_annotation
+  - data/gse100054/GSE100054_sample_metadata.csv | ext=csv | size=30.84 KB | role_guess=possible_metadata
+  - data/gse100054/GSE100054_series_matrix.txt.gz | ext=gz | size=9.06 MB | role_guess=possible_expression_matrix; geo_series_level_file
+  Preview of largest candidate matrix file (data/gse100054/GPL23126.soft.gz):
+    Header: ^PLATFORM = GPL23126
+    Guessed n_cols (from header): 3
+    File too large or unreadable for full parse; dimensions NOT VERIFIED without a bounded/chunked read.
+  Metadata keyword search hits:
+    cell.?type -> cell type:ch1
+

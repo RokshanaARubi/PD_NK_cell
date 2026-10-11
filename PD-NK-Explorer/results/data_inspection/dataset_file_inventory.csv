@@ -1,0 +1,23 @@
+dataset,filename,extension,size_bytes,size_human,relative_path,full_path
+xiong,GPL20301.soft.gz,gz,8015120,7.64 MB,data/xiong/GPL20301.soft.gz,D:/academics/L4S1/r/PD-NK-Explorer/PD-NK-Explorer/data/xiong/GPL20301.soft.gz
+xiong,GSE223138_sample_metadata.csv,csv,14024,13.70 KB,data/xiong/GSE223138_sample_metadata.csv,D:/academics/L4S1/r/PD-NK-Explorer/PD-NK-Explorer/data/xiong/GSE223138_sample_metadata.csv
+xiong,GSE223138_series_matrix.txt.gz,gz,3323,3.25 KB,data/xiong/GSE223138_series_matrix.txt.gz,D:/academics/L4S1/r/PD-NK-Explorer/PD-NK-Explorer/data/xiong/GSE223138_series_matrix.txt.gz
+xiong,GSM6940192_16_barcodes.tsv.gz,gz,58580,57.21 KB,data/xiong/raw_10x/GSM6940192_16_barcodes.tsv.gz,D:/academics/L4S1/r/PD-NK-Explorer/PD-NK-Explorer/data/xiong/raw_10x/GSM6940192_16_barcodes.tsv.gz
+xiong,GSM6940192_16_features.tsv.gz,gz,333437,325.62 KB,data/xiong/raw_10x/GSM6940192_16_features.tsv.gz,D:/academics/L4S1/r/PD-NK-Explorer/PD-NK-Explorer/data/xiong/raw_10x/GSM6940192_16_features.tsv.gz
+xiong,GSM6940192_16_matrix.mtx.gz,gz,61769867,58.91 MB,data/xiong/raw_10x/GSM6940192_16_matrix.mtx.gz,D:/academics/L4S1/r/PD-NK-Explorer/PD-NK-Explorer/data/xiong/raw_10x/GSM6940192_16_matrix.mtx.gz
+xiong,GSM6940193_17_barcodes.tsv.gz,gz,42922,41.92 KB,data/xiong/raw_10x/GSM6940193_17_barcodes.tsv.gz,D:/academics/L4S1/r/PD-NK-Explorer/PD-NK-Explorer/data/xiong/raw_10x/GSM6940193_17_barcodes.tsv.gz
+xiong,GSM6940193_17_features.tsv.gz,gz,333437,325.62 KB,data/xiong/raw_10x/GSM6940193_17_features.tsv.gz,D:/academics/L4S1/r/PD-NK-Explorer/PD-NK-Explorer/data/xiong/raw_10x/GSM6940193_17_features.tsv.gz
+xiong,GSM6940193_17_matrix.mtx.gz,gz,44234652,42.19 MB,data/xiong/raw_10x/GSM6940193_17_matrix.mtx.gz,D:/academics/L4S1/r/PD-NK-Explorer/PD-NK-Explorer/data/xiong/raw_10x/GSM6940193_17_matrix.mtx.gz
+xiong,GSM6940194_19_barcodes.tsv.gz,gz,72186,70.49 KB,data/xiong/raw_10x/GSM6940194_19_barcodes.tsv.gz,D:/academics/L4S1/r/PD-NK-Explorer/PD-NK-Explorer/data/xiong/raw_10x/GSM6940194_19_barcodes.tsv.gz
+xiong,GSM6940194_19_features.tsv.gz,gz,333437,325.62 KB,data/xiong/raw_10x/GSM6940194_19_features.tsv.gz,D:/academics/L4S1/r/PD-NK-Explorer/PD-NK-Explorer/data/xiong/raw_10x/GSM6940194_19_features.tsv.gz
+xiong,GSM6940194_19_matrix.mtx.gz,gz,75778136,72.27 MB,data/xiong/raw_10x/GSM6940194_19_matrix.mtx.gz,D:/academics/L4S1/r/PD-NK-Explorer/PD-NK-Explorer/data/xiong/raw_10x/GSM6940194_19_matrix.mtx.gz
+xiong,GSM6940195_20_barcodes.tsv.gz,gz,48005,46.88 KB,data/xiong/raw_10x/GSM6940195_20_barcodes.tsv.gz,D:/academics/L4S1/r/PD-NK-Explorer/PD-NK-Explorer/data/xiong/raw_10x/GSM6940195_20_barcodes.tsv.gz
+xiong,GSM6940195_20_features.tsv.gz,gz,333437,325.62 KB,data/xiong/raw_10x/GSM6940195_20_features.tsv.gz,D:/academics/L4S1/r/PD-NK-Explorer/PD-NK-Explorer/data/xiong/raw_10x/GSM6940195_20_features.tsv.gz
+xiong,GSM6940195_20_matrix.mtx.gz,gz,49465910,47.17 MB,data/xiong/raw_10x/GSM6940195_20_matrix.mtx.gz,D:/academics/L4S1/r/PD-NK-Explorer/PD-NK-Explorer/data/xiong/raw_10x/GSM6940195_20_matrix.mtx.gz
+moquin_beaudry,moquin_beaudry_SRA_run_metadata.csv,csv,24678,24.10 KB,data/moquin_beaudry/moquin_beaudry_SRA_run_metadata.csv,D:/academics/L4S1/r/PD-NK-Explorer/PD-NK-Explorer/data/moquin_beaudry/moquin_beaudry_SRA_run_metadata.csv
+moquin_beaudry,README_moquin_beaudry_ACCESS_NOTES.txt,txt,1014,1014.00 B,data/moquin_beaudry/README_moquin_beaudry_ACCESS_NOTES.txt,D:/academics/L4S1/r/PD-NK-Explorer/PD-NK-Explorer/data/moquin_beaudry/README_moquin_beaudry_ACCESS_NOTES.txt
+gse100054,GPL23126.soft.gz,gz,1071624362,1021.98 MB,data/gse100054/GPL23126.soft.gz,D:/academics/L4S1/r/PD-NK-Explorer/PD-NK-Explorer/data/gse100054/GPL23126.soft.gz
+gse100054,GSE100054_expression_matrix.csv,csv,23735925,22.64 MB,data/gse100054/GSE100054_expression_matrix.csv,D:/academics/L4S1/r/PD-NK-Explorer/PD-NK-Explorer/data/gse100054/GSE100054_expression_matrix.csv
+gse100054,GSE100054_platform_annotation.csv,csv,1076367589,1.00 GB,data/gse100054/GSE100054_platform_annotation.csv,D:/academics/L4S1/r/PD-NK-Explorer/PD-NK-Explorer/data/gse100054/GSE100054_platform_annotation.csv
+gse100054,GSE100054_sample_metadata.csv,csv,31583,30.84 KB,data/gse100054/GSE100054_sample_metadata.csv,D:/academics/L4S1/r/PD-NK-Explorer/PD-NK-Explorer/data/gse100054/GSE100054_sample_metadata.csv
+gse100054,GSE100054_series_matrix.txt.gz,gz,9504821,9.06 MB,data/gse100054/GSE100054_series_matrix.txt.gz,D:/academics/L4S1/r/PD-NK-Explorer/PD-NK-Explorer/data/gse100054/GSE100054_series_matrix.txt.gz

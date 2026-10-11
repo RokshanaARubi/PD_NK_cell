@@ -1,0 +1,4 @@
+column_name,source_file
+sra_uid,data/moquin_beaudry/moquin_beaudry_SRA_run_metadata.csv
+experiment,data/moquin_beaudry/moquin_beaudry_SRA_run_metadata.csv
+run_accession,data/moquin_beaudry/moquin_beaudry_SRA_run_metadata.csv

@@ -1,0 +1,33 @@
+# R temporary files
+.Rhistory
+.RData
+.RDataTmp
+.Ruserdata
+.Rproj.user/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Exclude research datasets by default
+PD-NK-Explorer/data/*
+
+# Include only small metadata CSVs needed by the app
+!PD-NK-Explorer/data/xiong/
+PD-NK-Explorer/data/xiong/*
+!PD-NK-Explorer/data/xiong/GSE223138_sample_metadata.csv
+
+!PD-NK-Explorer/data/gse100054/
+PD-NK-Explorer/data/gse100054/*
+!PD-NK-Explorer/data/gse100054/GSE100054_sample_metadata.csv
+
+!PD-NK-Explorer/data/moquin_beaudry/
+PD-NK-Explorer/data/moquin_beaudry/*
+!PD-NK-Explorer/data/moquin_beaudry/moquin_beaudry_SRA_run_metadata.csv
+
+# Exclude intermediate results, but include the app's required data
+PD-NK-Explorer/results/validated_data/*
+!PD-NK-Explorer/results/validated_data/ui_app_data.rds
+
+# Ignore RDS files directly under results
+PD-NK-Explorer/results/*.rds

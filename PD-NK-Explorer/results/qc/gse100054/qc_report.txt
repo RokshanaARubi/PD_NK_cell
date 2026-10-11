@@ -1,0 +1,53 @@
+=================================================================
+GSE100054 - QUALITY CONTROL
+Generated: 2026-10-02 04:06:01.392051
+Input: D:/academics/L4S1/r/PD-NK-Explorer/PD-NK-Explorer/results/validated_data/gse100054_validated.rds
+Identifier column: 'V1' | Metadata sample-ID column: 'geo_accession'
+=================================================================
+
+Working matrix: 138745 features x 19 samples.
+All 19 expression samples matched to metadata rows for QC alignment.
+Using 'diagnosis:ch1' as the group/diagnosis label for QC plots (visual annotation only - not used to alter any QC calculation).
+
+--- Missing-value assessment ---
+Total NA cells: 0 / 2636155 (0.0000%)
+No sample has any missing values.
+Features with at least one missing value: 0 / 138745
+
+--- Per-sample descriptive statistics ---
+Wrote sample_summary_stats.csv (19 samples).
+Samples flagged as global-mean outliers (heuristic: |z| > 3 across sample means): 0
+
+--- Sample-sample correlation ---
+Wrote sample_correlation_matrix.csv (19 x 19 matrix).
+Samples flagged for unusually low correlation to the rest of the cohort (heuristic: z < -2 on mean pairwise correlation): 1
+  Flagged sample(s): GSM2668813
+Wrote qc_plots/sample_correlation_heatmap.png
+Wrote qc_plots/sample_dendrogram.png
+
+--- Principal component analysis (samples) ---
+Features usable for PCA (finite, non-zero variance, no missing values): 138724 / 138745
+Wrote pca_coordinates.csv (first 5 PCs).
+Variance explained by PC1-PC5: 12.2%, 9.2%, 6.6%, 6.3%, 5.8%
+Samples flagged as PCA outliers (heuristic: |z| > 3 on PC1 or PC2): 0
+Wrote qc_plots/pca_plot.png
+
+--- Global expression distribution ---
+Wrote qc_plots/expression_density.png
+Wrote qc_plots/expression_boxplot.png
+
+--- Low-variance feature candidates (reporting only) ---
+Total features: 138745
+Low-variance candidates (heuristic: bottom 10% of variance): 13875 - written to low_variance_features_candidates.csv for review. NOT removed from the working data.
+
+--- Platform annotation file check (preview only, per safety rules) ---
+GSE100054_platform_annotation.csv detected. Size: 1026.50 MB
+File exceeds 100 MB - this is unusually large for a probe/gene annotation file and is flagged here as a data-quality anomaly worth investigating separately. Only the first 5 rows are previewed below; the file is NOT loaded in full by this QC script.
+Platform annotation preview columns: ID, probeset_id, seqname, strand, start, stop, total_probes, gene_assignment, mrna_assignment, swissprot, unigene, GO_biological_process, GO_cellular_component, GO_molecular_function, pathway, protein_domains, category, locus type, SPOT_ID
+GPL23126.soft.gz also present (1021.98 MB). NOT loaded by this script under any circumstance.
+NOTE: Identifier-to-gene mapping/conversion is intentionally NOT performed in this QC step, consistent with the prior validation step's rule to not convert identifiers yet.
+
+--- Outlier flag summary ---
+Samples flagged by at least one heuristic: 1 / 19
+  GSM2668813
+These are heuristic flags for manual review only. No samples have been removed or altered.

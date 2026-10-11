@@ -1,0 +1,7 @@
+signature,AUC,CI_low,CI_high,perm_P_one_sided
+Tier2_gene_signature,0.489,0.206,0.772,0.549
+Pathway_UP_score,0.4,0.123,0.677,0.78
+Pathway_DOWN_score_inverted,0.633,0.36,0.906,0.175
+Pathway_composite,0.622,0.344,0.901,0.211
+NK_abundance_proxy_PDhigh,0.356,0.087,0.624,0.854
+LOOCV_logistic_UP_DOWN,0.389,NA,NA,0.795

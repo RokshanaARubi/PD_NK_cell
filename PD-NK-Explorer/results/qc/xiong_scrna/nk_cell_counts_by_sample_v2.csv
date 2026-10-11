@@ -1,0 +1,7 @@
+sample_id,disease_state,n_cells,n_NK,pct_NK
+GSM6940192,Normal,10224,2439,23.86
+GSM6940193,Normal,7240,1729,23.88
+GSM6940194,Early Parkinson's disease (PD),12768,1601,12.54
+GSM6940195,Early Parkinson's disease (PD),8333,1757,21.08
+GSM6940196,Late Parkinson's disease (PD),9507,2086,21.94
+GSM6940197,Late Parkinson's disease (PD),7597,1505,19.81

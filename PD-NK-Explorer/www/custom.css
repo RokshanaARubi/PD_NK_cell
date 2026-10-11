@@ -1,0 +1,664 @@
+/* =================================================================
+   www/custom.css
+   PD-NK Explorer — Glassmorphism Scientific Dashboard Theme
+   -----------------------------------------------------------------
+   Visual redesign only. No Shiny/bs4Dash class names, IDs, or
+   structural selectors were removed — only restyled. Organized by
+   section; see the table of contents below.
+
+   TABLE OF CONTENTS
+   1.  Theme variables
+   2.  Base / background
+   3.  Reduced-motion support
+   4.  Fade-in utility
+   5.  Navbar / header (bs4Dash)
+   6.  Sidebar (bs4Dash)
+   7.  Hero section (.pdnk-hero)
+   8.  Note callout (.pdnk-note)
+   9.  Glass cards (.card, .box, .glass-card, .glass-panel)
+   10. Value boxes / info boxes (bs4ValueBox, .small-box, .info-box)
+   11. Workflow diagram (.workflow-step, .workflow-arrow)
+   12. Buttons (.btn, downloadButton, actionButton)
+   13. Form inputs (select, slider, text, numeric, checkbox, radio)
+   14. shinyWidgets pickerInput overrides
+   15. Tables (DT / DataTables)
+   16. Plotly container polish
+   17. Tabs (bs4TabCard / nav-tabs)
+   18. Scrollbar polish
+   19. Misc utility classes
+   ================================================================= */
+
+/* ---------------------------------------------------------------
+   1. THEME VARIABLES
+   --------------------------------------------------------------- */
+:root {
+  --pdnk-primary:      #1a3d5c;   /* deep scientific blue */
+  --pdnk-secondary:    #2c6e91;   /* mid blue */
+  --pdnk-accent:       #4fa3c7;   /* soft cyan */
+  --pdnk-accent-2:     #63c5c8;   /* teal */
+  --pdnk-lavender:     #a78bda;   /* soft purple glow accent */
+
+  --pdnk-glass:        rgba(255, 255, 255, 0.55);
+  --pdnk-glass-strong: rgba(255, 255, 255, 0.72);
+  --pdnk-glass-soft:   rgba(255, 255, 255, 0.35);
+  --pdnk-border:       rgba(255, 255, 255, 0.55);
+  --pdnk-border-accent:rgba(79, 163, 199, 0.35);
+
+  --pdnk-text:         #1c2b36;
+  --pdnk-text-muted:   #52697a;
+  --pdnk-text-on-dark: #eaf3f8;
+
+  --pdnk-shadow:       0 8px 32px rgba(26, 61, 92, 0.10);
+  --pdnk-shadow-hover: 0 14px 38px rgba(26, 61, 92, 0.16);
+
+  --pdnk-radius-lg:    20px;
+  --pdnk-radius-md:    14px;
+  --pdnk-radius-sm:    10px;
+  --pdnk-radius-pill:  999px;
+
+  --pdnk-blur:         14px;
+  --pdnk-transition:   0.22s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* ---------------------------------------------------------------
+   2. BASE / BACKGROUND
+   Soft layered background: light blue/white base with blurred
+   glow blobs (blue, cyan, lavender). Fixed so it doesn't scroll
+   with content and never competes with data visuals.
+   --------------------------------------------------------------- */
+html, body, .content-wrapper, .wrapper {
+  background-color: #f3f7fa !important;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color: var(--pdnk-text);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 32% at 12% 8%,  rgba(79, 163, 199, 0.22) 0%, rgba(79, 163, 199, 0) 70%),
+    radial-gradient(34% 30% at 90% 12%, rgba(99, 197, 200, 0.20) 0%, rgba(99, 197, 200, 0) 70%),
+    radial-gradient(40% 34% at 78% 92%, rgba(167, 139, 218, 0.16) 0%, rgba(167, 139, 218, 0) 70%),
+    radial-gradient(36% 30% at 6% 90%,  rgba(26, 61, 92, 0.10) 0%, rgba(26, 61, 92, 0) 70%),
+    linear-gradient(180deg, #f7fafc 0%, #eef4f8 100%);
+  background-attachment: fixed;
+}
+
+/* Ensure actual app content sits above the background layer */
+.content-wrapper, .app-container, .main-sidebar, .main-header {
+  position: relative;
+  z-index: 1;
+  background-color: transparent !important;
+}
+
+/* ---------------------------------------------------------------
+   3. REDUCED-MOTION SUPPORT
+   --------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* ---------------------------------------------------------------
+   4. FADE-IN UTILITY
+   Add class="pdnk-fade-in" to any container for a gentle entrance.
+   --------------------------------------------------------------- */
+.pdnk-fade-in {
+  animation: pdnkFadeIn 0.5s ease-out both;
+}
+@keyframes pdnkFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------------------------------------------------------------
+   5. NAVBAR / HEADER (bs4Dash)
+   --------------------------------------------------------------- */
+.main-header.navbar {
+  background: rgba(255, 255, 255, 0.65) !important;
+  -webkit-backdrop-filter: blur(var(--pdnk-blur));
+  backdrop-filter: blur(var(--pdnk-blur));
+  border-bottom: 1px solid var(--pdnk-border-accent);
+  box-shadow: 0 2px 18px rgba(26, 61, 92, 0.06);
+}
+
+.main-header .navbar-brand, .brand-link {
+  color: var(--pdnk-primary) !important;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.main-header .nav-link {
+  color: var(--pdnk-primary) !important;
+}
+.main-header .nav-link:hover {
+  color: var(--pdnk-accent) !important;
+}
+
+/* ---------------------------------------------------------------
+   6. SIDEBAR (bs4Dash)
+   Deep translucent scientific blue, blurred, rounded active item.
+   --------------------------------------------------------------- */
+.main-sidebar, .sidebar-dark-primary, .sidebar {
+  background: linear-gradient(180deg, rgba(15, 34, 51, 0.94) 0%, rgba(26, 61, 92, 0.92) 100%) !important;
+  -webkit-backdrop-filter: blur(var(--pdnk-blur));
+  backdrop-filter: blur(var(--pdnk-blur));
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sidebar .nav-sidebar .nav-link,
+.sidebar-menu .nav-link {
+  color: var(--pdnk-text-on-dark) !important;
+  border-radius: var(--pdnk-radius-md);
+  margin: 3px 10px;
+  transition: background var(--pdnk-transition), transform var(--pdnk-transition);
+}
+
+.sidebar .nav-sidebar .nav-link:hover {
+  background: rgba(79, 163, 199, 0.18) !important;
+  transform: translateX(2px);
+}
+
+.sidebar .nav-sidebar .nav-link.active,
+.sidebar-menu .nav-link.active,
+.nav-sidebar .nav-item .nav-link.active {
+  background: linear-gradient(90deg, rgba(79, 163, 199, 0.35), rgba(99, 197, 200, 0.22)) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12) inset, 0 4px 16px rgba(79, 163, 199, 0.35);
+  border-radius: var(--pdnk-radius-pill);
+}
+
+.sidebar .nav-icon {
+  color: inherit !important;
+  opacity: 0.9;
+}
+
+/* ---------------------------------------------------------------
+   7. HERO SECTION (.pdnk-hero)
+   Translucent glass panel, subtle gradient overlay, dark readable
+   text (kept dark since the panel is light/glassy, not solid navy).
+   --------------------------------------------------------------- */
+.pdnk-hero {
+  position: relative;
+  background: linear-gradient(120deg, rgba(79, 163, 199, 0.16), rgba(99, 197, 200, 0.10) 60%, rgba(167, 139, 218, 0.10));
+  background-color: var(--pdnk-glass);
+  -webkit-backdrop-filter: blur(var(--pdnk-blur));
+  backdrop-filter: blur(var(--pdnk-blur));
+  border: 1px solid var(--pdnk-border);
+  border-radius: var(--pdnk-radius-lg);
+  padding: 28px 32px;
+  margin-bottom: 20px;
+  box-shadow: var(--pdnk-shadow);
+  color: var(--pdnk-primary);
+}
+
+.pdnk-hero h2 {
+  margin: 0 0 6px 0;
+  font-weight: 700;
+  color: var(--pdnk-primary);
+}
+
+.pdnk-hero h4 {
+  margin: 0;
+  font-weight: 400;
+  color: var(--pdnk-text-muted);
+}
+
+/* ---------------------------------------------------------------
+   8. NOTE CALLOUT (.pdnk-note)
+   --------------------------------------------------------------- */
+.pdnk-note {
+  background: rgba(79, 163, 199, 0.10);
+  border-left: 3px solid var(--pdnk-accent);
+  padding: 10px 16px;
+  margin-top: 14px;
+  border-radius: var(--pdnk-radius-sm);
+  font-size: 0.9em;
+  color: var(--pdnk-text-muted);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* ---------------------------------------------------------------
+   9. GLASS CARDS (.card, .box, .glass-card, .glass-panel)
+   --------------------------------------------------------------- */
+.card, .box,
+.glass-card, .glass-panel,
+.bs4-card, .card.bs4Card {
+  background: var(--pdnk-glass) !important;
+  -webkit-backdrop-filter: blur(var(--pdnk-blur));
+  backdrop-filter: blur(var(--pdnk-blur));
+  border: 1px solid var(--pdnk-border) !important;
+  border-radius: var(--pdnk-radius-lg) !important;
+  box-shadow: var(--pdnk-shadow) !important;
+  transition: box-shadow var(--pdnk-transition), transform var(--pdnk-transition);
+}
+
+.card:hover, .glass-card:hover {
+  box-shadow: var(--pdnk-shadow-hover) !important;
+}
+
+.card-header, .box-header {
+  background: rgba(255, 255, 255, 0.35) !important;
+  border-bottom: 1px solid var(--pdnk-border-accent) !important;
+  border-top-left-radius: var(--pdnk-radius-lg) !important;
+  border-top-right-radius: var(--pdnk-radius-lg) !important;
+  font-weight: 600;
+  color: var(--pdnk-primary);
+}
+
+.card-title, .box-title {
+  color: var(--pdnk-primary);
+  font-weight: 600;
+}
+
+.card-body, .box-body {
+  background: transparent !important;
+}
+
+/* Generic reusable glass utility classes for custom UI blocks */
+.glass-card {
+  padding: 18px 20px;
+}
+.glass-panel {
+  background: var(--pdnk-glass-soft) !important;
+  border-radius: var(--pdnk-radius-md) !important;
+  padding: 16px;
+}
+
+/* ---------------------------------------------------------------
+   10. VALUE BOXES / INFO BOXES (bs4ValueBox, .small-box, .info-box)
+   Floating glass statistic cards with a subtle top accent.
+   --------------------------------------------------------------- */
+.small-box, .info-box,
+.bg-primary.small-box, .bg-info.small-box, .bg-success.small-box,
+.bg-warning.small-box, .bg-danger.small-box, .bg-secondary.small-box {
+  background: var(--pdnk-glass-strong) !important;
+  -webkit-backdrop-filter: blur(var(--pdnk-blur));
+  backdrop-filter: blur(var(--pdnk-blur));
+  border: 1px solid var(--pdnk-border) !important;
+  border-top: 3px solid var(--pdnk-accent) !important;
+  border-radius: var(--pdnk-radius-md) !important;
+  box-shadow: var(--pdnk-shadow) !important;
+  color: var(--pdnk-text) !important;
+  overflow: hidden;
+  transition: transform var(--pdnk-transition), box-shadow var(--pdnk-transition);
+}
+
+.small-box:hover, .info-box:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--pdnk-shadow-hover) !important;
+}
+
+.small-box h3, .small-box .inner h3,
+.info-box-number {
+  color: var(--pdnk-primary) !important;
+  font-weight: 700;
+}
+
+.small-box p, .info-box-text {
+  color: var(--pdnk-text-muted) !important;
+}
+
+.small-box .icon, .info-box-icon {
+  color: var(--pdnk-accent) !important;
+  opacity: 0.55;
+}
+
+/* bs4Dash value boxes sometimes use solid bg-* helper classes;
+   soften those to fit the glass palette without losing the
+   status color as an accent border instead of a solid fill. */
+.bg-primary   { background: var(--pdnk-glass-strong) !important; border-top-color: var(--pdnk-primary) !important; }
+.bg-info      { background: var(--pdnk-glass-strong) !important; border-top-color: var(--pdnk-accent) !important; }
+.bg-success   { background: var(--pdnk-glass-strong) !important; border-top-color: #3fa876 !important; }
+.bg-warning   { background: var(--pdnk-glass-strong) !important; border-top-color: #d9a441 !important; }
+.bg-danger    { background: var(--pdnk-glass-strong) !important; border-top-color: #c96a63 !important; }
+.bg-secondary { background: var(--pdnk-glass-strong) !important; border-top-color: var(--pdnk-lavender) !important; }
+
+/* ---------------------------------------------------------------
+   11. WORKFLOW DIAGRAM (.workflow-step, .workflow-arrow)
+   FIX: .workflow-arrow previously had no width/justify-content,
+   so the arrow icon sat at its natural shrink-to-fit position
+   instead of being forced to the horizontal center — that's why
+   it looked stuck to one side. Both step and arrow now get an
+   explicit full-width flex row with centering.
+   Each step is numbered (via a CSS counter, no R changes needed)
+   and alternates between two accent colors for visual rhythm; the
+   arrows pick up a matching gradient so the whole pipeline reads
+   as one connected, colorful flow instead of plain glass chips.
+   --------------------------------------------------------------- */
+.workflow-diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 16px 0;
+  counter-reset: pdnk-step;
+}
+
+.workflow-step {
+  counter-increment: pdnk-step;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: fit-content;
+  max-width: 90%;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  padding: 10px 22px 10px 14px;
+  border-radius: var(--pdnk-radius-pill);
+  font-weight: 600;
+  text-align: center;
+  margin: 4px auto;
+  box-shadow: var(--pdnk-shadow);
+  transition: transform var(--pdnk-transition), box-shadow var(--pdnk-transition), filter var(--pdnk-transition);
+}
+
+/* Numbered circular badge, e.g. "1", "2", "3"... generated purely in CSS */
+.workflow-step::before {
+  content: counter(pdnk-step);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+/* Alternating color palette across the pipeline (odd / even steps) */
+.workflow-step:nth-of-type(4n+1) {
+  background: linear-gradient(135deg, var(--pdnk-primary), var(--pdnk-secondary));
+}
+.workflow-step:nth-of-type(4n+3) {
+  background: linear-gradient(135deg, var(--pdnk-secondary), var(--pdnk-accent-2));
+}
+
+.workflow-step:hover {
+  transform: translateY(-2px) scale(1.015);
+  filter: brightness(1.08);
+  box-shadow: var(--pdnk-shadow-hover);
+}
+
+.workflow-arrow {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin: 2px 0;
+  font-size: 1.05rem;
+  color: var(--pdnk-accent);
+  opacity: 0.85;
+}
+
+.workflow-arrow:nth-of-type(4n+3) {
+  color: var(--pdnk-lavender);
+}
+
+/* ---------------------------------------------------------------
+   12. BUTTONS (.btn, downloadButton, actionButton)
+   --------------------------------------------------------------- */
+.btn, .btn-default, .action-button,
+.download-button, a.btn, .shiny-download-link {
+  background: rgba(79, 163, 199, 0.12) !important;
+  color: var(--pdnk-primary) !important;
+  border: 1px solid var(--pdnk-border-accent) !important;
+  border-radius: var(--pdnk-radius-pill) !important;
+  padding: 8px 20px !important;
+  font-weight: 500;
+  box-shadow: 0 2px 10px rgba(26, 61, 92, 0.06);
+  transition: background var(--pdnk-transition), transform var(--pdnk-transition),
+              box-shadow var(--pdnk-transition), border-color var(--pdnk-transition);
+}
+
+.btn:hover, .btn-default:hover, .action-button:hover,
+.download-button:hover, a.btn:hover {
+  background: rgba(79, 163, 199, 0.22) !important;
+  border-color: var(--pdnk-accent) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(79, 163, 199, 0.25);
+  color: var(--pdnk-primary) !important;
+}
+
+.btn:active, .action-button:active {
+  transform: translateY(0px);
+  box-shadow: 0 2px 6px rgba(26, 61, 92, 0.15) inset;
+}
+
+.btn:focus, .btn:focus-visible, .action-button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(79, 163, 199, 0.45) !important;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--pdnk-secondary), var(--pdnk-accent)) !important;
+  color: #ffffff !important;
+  border: 1px solid transparent !important;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--pdnk-primary), var(--pdnk-secondary)) !important;
+  color: #ffffff !important;
+}
+
+.btn-outline-primary, .btn-outline-secondary {
+  background: rgba(255, 255, 255, 0.4) !important;
+  border: 1px solid var(--pdnk-border-accent) !important;
+  color: var(--pdnk-primary) !important;
+}
+.btn-outline-primary:hover, .btn-outline-secondary:hover {
+  background: rgba(79, 163, 199, 0.18) !important;
+}
+
+/* ---------------------------------------------------------------
+   13. FORM INPUTS
+   --------------------------------------------------------------- */
+.form-control, .selectize-input,
+input[type="text"], input[type="number"], input[type="search"],
+textarea {
+  background: rgba(255, 255, 255, 0.6) !important;
+  border: 1px solid var(--pdnk-border-accent) !important;
+  border-radius: var(--pdnk-radius-sm) !important;
+  color: var(--pdnk-text) !important;
+  transition: border-color var(--pdnk-transition), box-shadow var(--pdnk-transition);
+}
+
+.form-control:focus, .selectize-input.focus,
+input:focus, textarea:focus {
+  border-color: var(--pdnk-accent) !important;
+  box-shadow: 0 0 0 3px rgba(79, 163, 199, 0.25) !important;
+  outline: none;
+}
+
+/* Sliders (ionRangeSlider used by sliderInput) */
+.irs--shiny .irs-bar {
+  background: linear-gradient(90deg, var(--pdnk-secondary), var(--pdnk-accent)) !important;
+  border-top: none;
+  border-bottom: none;
+}
+.irs--shiny .irs-handle {
+  background: #ffffff !important;
+  border: 2px solid var(--pdnk-accent) !important;
+  box-shadow: 0 2px 8px rgba(26, 61, 92, 0.25);
+}
+.irs--shiny .irs-single, .irs--shiny .irs-from, .irs--shiny .irs-to {
+  background: var(--pdnk-secondary) !important;
+  border-radius: var(--pdnk-radius-sm);
+}
+.irs--shiny .irs-line {
+  background: rgba(79, 163, 199, 0.18) !important;
+}
+
+/* Checkboxes / radios */
+.checkbox label, .radio label { color: var(--pdnk-text); }
+input[type="checkbox"], input[type="radio"] {
+  accent-color: var(--pdnk-accent);
+}
+
+/* ---------------------------------------------------------------
+   14. SHINYWIDGETS pickerInput OVERRIDES
+   --------------------------------------------------------------- */
+.bootstrap-select .dropdown-toggle,
+.bootstrap-select > .btn {
+  background: rgba(255, 255, 255, 0.6) !important;
+  border: 1px solid var(--pdnk-border-accent) !important;
+  border-radius: var(--pdnk-radius-sm) !important;
+  color: var(--pdnk-text) !important;
+  box-shadow: none !important;
+}
+
+.bootstrap-select .dropdown-menu {
+  background: var(--pdnk-glass-strong) !important;
+  -webkit-backdrop-filter: blur(var(--pdnk-blur));
+  backdrop-filter: blur(var(--pdnk-blur));
+  border: 1px solid var(--pdnk-border) !important;
+  border-radius: var(--pdnk-radius-sm) !important;
+  overflow: hidden;
+}
+
+.bootstrap-select .dropdown-menu li a:hover {
+  background: rgba(79, 163, 199, 0.18) !important;
+}
+
+/* ---------------------------------------------------------------
+   15. TABLES (DT / DataTables)
+   --------------------------------------------------------------- */
+.dataTables_wrapper {
+  background: var(--pdnk-glass);
+  -webkit-backdrop-filter: blur(var(--pdnk-blur));
+  backdrop-filter: blur(var(--pdnk-blur));
+  border: 1px solid var(--pdnk-border);
+  border-radius: var(--pdnk-radius-md);
+  padding: 14px;
+}
+
+table.dataTable {
+  background: transparent !important;
+  border-collapse: separate !important;
+  border-spacing: 0;
+}
+
+table.dataTable thead th {
+  background: rgba(79, 163, 199, 0.12) !important;
+  color: var(--pdnk-primary) !important;
+  border-bottom: 1px solid var(--pdnk-border-accent) !important;
+  font-weight: 600;
+}
+
+table.dataTable tbody tr {
+  background: transparent !important;
+  transition: background var(--pdnk-transition);
+}
+
+table.dataTable tbody tr:hover {
+  background: rgba(79, 163, 199, 0.10) !important;
+}
+
+table.dataTable tbody td {
+  border-top: 1px solid rgba(79, 163, 199, 0.08) !important;
+  color: var(--pdnk-text);
+}
+
+.dataTables_wrapper .dataTables_filter input,
+.dataTables_wrapper .dataTables_length select {
+  background: rgba(255, 255, 255, 0.6) !important;
+  border: 1px solid var(--pdnk-border-accent) !important;
+  border-radius: var(--pdnk-radius-sm) !important;
+  color: var(--pdnk-text) !important;
+}
+
+.dataTables_wrapper .paginate_button {
+  border-radius: var(--pdnk-radius-pill) !important;
+  margin: 0 2px;
+}
+
+.dataTables_wrapper .paginate_button.current {
+  background: linear-gradient(135deg, var(--pdnk-secondary), var(--pdnk-accent)) !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+.dataTables_wrapper .paginate_button:hover:not(.current) {
+  background: rgba(79, 163, 199, 0.18) !important;
+  color: var(--pdnk-primary) !important;
+}
+
+/* ---------------------------------------------------------------
+   16. PLOTLY CONTAINER POLISH
+   Keep chart backgrounds transparent so the glass card shows
+   through; do not touch plotly's internal SVG/canvas rendering.
+   --------------------------------------------------------------- */
+.plotly.html-widget, .js-plotly-plot .plotly {
+  background: transparent !important;
+}
+.js-plotly-plot .main-svg {
+  background: transparent !important;
+}
+
+/* ---------------------------------------------------------------
+   17. TABS (bs4TabCard / nav-tabs)
+   --------------------------------------------------------------- */
+.nav-tabs {
+  border-bottom: 1px solid var(--pdnk-border-accent);
+}
+
+.nav-tabs .nav-link {
+  border: none !important;
+  border-radius: var(--pdnk-radius-pill) !important;
+  color: var(--pdnk-text-muted) !important;
+  margin-right: 6px;
+  padding: 7px 18px;
+  transition: background var(--pdnk-transition), color var(--pdnk-transition);
+}
+
+.nav-tabs .nav-link:hover {
+  background: rgba(79, 163, 199, 0.10) !important;
+}
+
+.nav-tabs .nav-link.active {
+  background: linear-gradient(135deg, var(--pdnk-secondary), var(--pdnk-accent)) !important;
+  color: #ffffff !important;
+}
+
+/* ---------------------------------------------------------------
+   18. SCROLLBAR POLISH (WebKit browsers)
+   --------------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(79, 163, 199, 0.35);
+  border-radius: var(--pdnk-radius-pill);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(79, 163, 199, 0.55);
+}
+
+/* ---------------------------------------------------------------
+   19. MISC UTILITY CLASSES
+   --------------------------------------------------------------- */
+.pdnk-section {
+  margin-bottom: 22px;
+}
+
+/* Footer */
+.main-footer {
+  background: rgba(255, 255, 255, 0.5) !important;
+  -webkit-backdrop-filter: blur(var(--pdnk-blur));
+  backdrop-filter: blur(var(--pdnk-blur));
+  border-top: 1px solid var(--pdnk-border-accent) !important;
+  color: var(--pdnk-text-muted) !important;
+}

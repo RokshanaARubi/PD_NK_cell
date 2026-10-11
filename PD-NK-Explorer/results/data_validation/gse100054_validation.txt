@@ -1,0 +1,34 @@
+=================================================================
+GSE100054 - DATASET VALIDATION
+Generated: 2026-10-02 04:03:22.060837
+=================================================================
+
+NOTE: GPL23126.soft.gz detected. This is a PLATFORM ANNOTATION file and will NOT be loaded into memory or treated as an expression matrix (known prior-script bug, now guarded against).
+Loaded GSE100054_expression_matrix.csv: 138745 rows x 20 columns
+Identifier column detected: 'V1'
+Unique identifiers: 138745 | Duplicate identifiers: 0
+Rows (features): 138745 | Columns (samples, excluding ID col): 19
+Interpretation: rows appear to represent genes/probes, columns appear to represent samples (heuristic based on identifier column position and shape; not independently confirmed beyond this file).
+Identifier type (heuristic, NOT converted): other/unknown - no single ID pattern dominates (top guess: gene_symbol at 31.5% of sampled IDs)
+Expression value summary -> min: 2.076 | max: 19.932 | mean: 5.09 | median: 4.056 | NA count: 0
+Expression type assessment (heuristic only, NOT a confirmed fact): HEURISTIC ONLY: likely log-transformed or normalized expression (non-integer, small dynamic range)
+
+Loaded GSE100054_sample_metadata.csv: 19 rows x 41 columns.
+Metadata columns: title, geo_accession, status, submission_date, last_update_date, type, channel_count, source_name_ch1, organism_ch1, characteristics_ch1, characteristics_ch1.1, characteristics_ch1.2, characteristics_ch1.3, characteristics_ch1.4, molecule_ch1, extract_protocol_ch1, label_ch1, label_protocol_ch1, taxid_ch1, hyb_protocol, scan_protocol, data_processing, platform_id, contact_name, contact_email, contact_phone, contact_department, contact_institute, contact_address, contact_city, contact_state, contact_zip/postal_code, contact_country, supplementary_file, supplementary_file.1, data_row_count, age:ch1, cell type:ch1, diagnosis:ch1, gender:ch1, tissue:ch1
+Candidate disease/phenotype column(s) by name: status, diagnosis:ch1
+  Column 'status' unique values: Public on Jul 27 2017
+    Value-content check: status=NOT VERIFIED | groups found: other disease group(s) present
+  Column 'diagnosis:ch1' unique values: healthy control | Parkinson's disease
+    Value-content check: status=POSSIBLE | groups found: Parkinson's disease / PD; healthy control / control
+Metadata sample-ID column guessed as: 'geo_accession'
+
+Sample-ID consistency check:
+  Expression samples: 19
+  Metadata samples: 19
+  Matched samples: 19
+  Unmatched expression samples: 0
+  Unmatched metadata samples: 0
+
+Platform annotation CSV found (GSE100054_platform_annotation.csv). Will be used in place of GPL23126.soft.gz if platform info is needed downstream. Not loaded in full here since it is not required for structural validation.
+
+FINAL STATUS - GSE100054: READY

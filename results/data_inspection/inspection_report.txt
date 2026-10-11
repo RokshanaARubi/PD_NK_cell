@@ -1,0 +1,26 @@
+=================================================================
+PD-NK Explorer :: Dataset Inspection Report
+Generated: 2026-10-02 03:55:41.795112
+Project root: D:/academics/L4S1/r/PD-NK-Explorer
+=================================================================
+
+[xiong] Directory does not exist: D:/academics/L4S1/r/PD-NK-Explorer/data/xiong
+[moquin_beaudry] Directory does not exist: D:/academics/L4S1/r/PD-NK-Explorer/data/moquin_beaudry
+[gse100054] Directory does not exist: D:/academics/L4S1/r/PD-NK-Explorer/data/gse100054
+Wrote: results/data_inspection/dataset_file_inventory.csv (0 files across all datasets)
+
+-----------------------------------------------------------------
+XIONG ET AL. 2024 - INSPECTION
+-----------------------------------------------------------------
+No files found in data/xiong/. Status: INCOMPLETE.
+
+-----------------------------------------------------------------
+MOQUIN-BEAUDRY ET AL. 2024/2025 - INSPECTION
+-----------------------------------------------------------------
+No files found in data/moquin_beaudry/. Status: INCOMPLETE.
+
+-----------------------------------------------------------------
+GSE100054 - INSPECTION
+-----------------------------------------------------------------
+No files found in data/gse100054/. Status: INCOMPLETE.
+

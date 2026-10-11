@@ -1,0 +1,18 @@
+=================================================================
+XIONG GSE223138 - DATASET VALIDATION
+Generated: 2026-10-02 04:03:04.966367
+=================================================================
+
+Loaded sample metadata: 6 rows x 44 columns.
+Column 'cell type:ch1' unique values: peripheral blood mononuclear cell
+Column 'disease state:ch1' unique values: Normal | Early Parkinson's disease (PD) | Late Parkinson's disease (PD)
+Column 'tissue:ch1' unique values: blood
+Disease label content check ('disease state:ch1'): status=POSSIBLE | groups found: Parkinson's disease / PD; healthy control / control
+Supplementary-file field(s) found in metadata: supplementary_file_1, supplementary_file_2, supplementary_file_3
+  'supplementary_file_1' values: ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM6940nnn/GSM6940192/suppl/GSM6940192_16_barcodes.tsv.gz | ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM6940nnn/GSM6940193/suppl/GSM6940193_17_barcodes.tsv.gz | ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM6940nnn/GSM6940194/suppl/GSM6940194_19_barcodes.tsv.gz | ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM6940nnn/GSM6940195/suppl/GSM6940195_20_barcodes.tsv.gz | ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM6940nnn/GSM6940196/suppl/GSM6940196_25_barcodes.tsv.gz | ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM6940nnn/GSM6940197/suppl/GSM6940197_26_barcodes.tsv.gz
+  'supplementary_file_2' values: ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM6940nnn/GSM6940192/suppl/GSM6940192_16_features.tsv.gz | ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM6940nnn/GSM6940193/suppl/GSM6940193_17_features.tsv.gz | ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM6940nnn/GSM6940194/suppl/GSM6940194_19_features.tsv.gz | ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM6940nnn/GSM6940195/suppl/GSM6940195_20_features.tsv.gz | ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM6940nnn/GSM6940196/suppl/GSM6940196_25_features.tsv.gz | ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM6940nnn/GSM6940197/suppl/GSM6940197_26_features.tsv.gz
+  'supplementary_file_3' values: ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM6940nnn/GSM6940192/suppl/GSM6940192_16_matrix.mtx.gz | ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM6940nnn/GSM6940193/suppl/GSM6940193_17_matrix.mtx.gz | ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM6940nnn/GSM6940194/suppl/GSM6940194_19_matrix.mtx.gz | ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM6940nnn/GSM6940195/suppl/GSM6940195_20_matrix.mtx.gz | ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM6940nnn/GSM6940196/suppl/GSM6940196_25_matrix.mtx.gz | ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM6940nnn/GSM6940197/suppl/GSM6940197_26_matrix.mtx.gz
+Series matrix contains a data-table header but NO data rows (table_begin immediately followed by table_end). This confirms the series matrix holds ONLY metadata/summary information, not actual expression values.
+Candidate cell-level / archive files found: GSM6940192_16_barcodes.tsv.gz, GSM6940192_16_features.tsv.gz, GSM6940192_16_matrix.mtx.gz, GSM6940193_17_barcodes.tsv.gz, GSM6940193_17_features.tsv.gz, GSM6940193_17_matrix.mtx.gz, GSM6940194_19_barcodes.tsv.gz, GSM6940194_19_features.tsv.gz, GSM6940194_19_matrix.mtx.gz, GSM6940195_20_barcodes.tsv.gz, GSM6940195_20_features.tsv.gz, GSM6940195_20_matrix.mtx.gz -- presence of these filenames does NOT by itself confirm valid scRNA-seq content; further inspection required before use.
+
+FINAL STATUS - Xiong GSE223138: NOT READY

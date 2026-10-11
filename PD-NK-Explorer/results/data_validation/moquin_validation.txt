@@ -1,0 +1,34 @@
+=================================================================
+MOQUIN-BEAUDRY - DATASET VALIDATION
+Generated: 2026-10-02 04:03:12.169119
+=================================================================
+
+README_moquin_beaudry_ACCESS_NOTES.txt contents:
+  This file lists a starting point for the raw SRA metadata for BioProject
+  PRJNA1145007 (SRA study SRP525054).
+  
+  The 'run_accession' / 'experiment' columns are raw NCBI eSummary XML
+  fragments, not a clean run table -- parse them or, more practically,
+  download the canonical SraRunTable.txt directly from the SRA Run
+  Selector for this BioProject:
+    https://www.ncbi.nlm.nih.gov/Traces/study/?acc=PRJNA1145007
+  
+  This script intentionally does NOT download the raw FASTQ/BAM files
+  themselves (potentially hundreds of GB to multiple TB). Once you have
+  identified the runs you need from the run table, retrieve them with
+  the SRA Toolkit (not an R package -- install separately), e.g.:
+  
+    prefetch <SRR_accession>
+    fasterq-dump <SRR_accession> --split-files -O data/moquin_beaudry/fastq/
+  
+  These raw reads will require Cell Ranger (10x Genomics, GEX + VDJ modes)
+  to become an analyzable count matrix -- this is real downstream analysis
+  work, not data acquisition, and is intentionally out of scope here.
+Loaded SRA run metadata: 18 rows x 3 columns.
+Columns present: sra_uid, experiment, run_accession
+Number of SRA runs: 18
+run_accession values: <Run acc="SRR30175132" total_spots="23587389" total_bases="4764652578" load_done="true" is_public="true" cluster_name="public" static_data_available="true"/>, <Run acc="SRR30175133" total_spots="26007015" total_bases="5253417030" load_done="true" is_public="true" cluster_name="public" static_data_available="true"/>, <Run acc="SRR30175134" total_spots="194816186" total_bases="39352869572" load_done="true" is_public="true" cluster_name="public" static_data_available="true"/>, <Run acc="SRR30175135" total_spots="191851939" total_bases="38754091678" load_done="true" is_public="true" cluster_name="public" static_data_available="true"/>, <Run acc="SRR30175136" total_spots="1578386907" total_bases="318834155214" load_done="true" is_public="true" cluster_name="public" static_data_available="true"/>, <Run acc="SRR30175137" total_spots="1429052553" total_bases="288668615706" load_done="true" is_public="true" cluster_name="public" static_data_available="true"/>, <Run acc="SRR30175138" total_spots="1554652347" total_bases="314039774094" load_done="true" is_public="true" cluster_name="public" static_data_available="true"/>, <Run acc="SRR30175139" total_spots="1302249140" total_bases="263054326280" load_done="true" is_public="true" cluster_name="public" static_data_available="true"/>, <Run acc="SRR30175140" total_spots="17742782" total_bases="3584041964" load_done="true" is_public="true" cluster_name="public" static_data_available="true"/>, <Run acc="SRR30175141" total_spots="18967563" total_bases="3831447726" load_done="true" is_public="true" cluster_name="public" static_data_available="true"/>, <Run acc="SRR30175142" total_spots="19598895" total_bases="3958976790" load_done="true" is_public="true" cluster_name="public" static_data_available="true"/>, <Run acc="SRR30175143" total_spots="19325981" total_bases="3903848162" load_done="true" is_public="true" cluster_name="public" static_data_available="true"/>, <Run acc="SRR30175144" total_spots="133310793" total_bases="26928780186" load_done="true" is_public="true" cluster_name="public" static_data_available="true"/>, <Run acc="SRR30175145" total_spots="122162250" total_bases="24676774500" load_done="true" is_public="true" cluster_name="public" static_data_available="true"/>, <Run acc="SRR30175146" total_spots="22040922" total_bases="4452266244" load_done="true" is_public="true" cluster_name="public" static_data_available="true"/>, <Run acc="SRR30175147" total_spots="24171050" total_bases="4882552100" load_done="true" is_public="true" cluster_name="public" static_data_available="true"/>, <Run acc="SRR30175148" total_spots="2069098072" total_bases="417957810544" load_done="true" is_public="true" cluster_name="public" static_data_available="true"/>, <Run acc="SRR30175149" total_spots="2042595481" total_bases="412604287162" load_done="true" is_public="true" cluster_name="public" static_data_available="true"/>
+No processed expression matrix, 10x files, h5/h5ad, or Seurat object found locally. Only SRA run-level metadata is currently available.
+Per project safety rules, FASTQ/SRA raw sequencing data will NOT be downloaded by this or any automated step without explicit separate authorization.
+
+FINAL STATUS - Moquin-Beaudry: PARTIALLY AVAILABLE

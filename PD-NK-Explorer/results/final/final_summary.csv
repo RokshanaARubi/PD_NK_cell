@@ -1,0 +1,16 @@
+step,metric,value
+2-4,Cells after QC (Xiong),"55,669"
+4,"NK cells called (clusters 12, 3, 5)","11,117"
+5,Donors (Control / PD),2 / 4
+5,Genes tested (NK pseudobulk),"12,296"
+5,Genes with FDR < 0.05 (PD vs Control),0
+6,Candidates: Tier 1 / Tier 2 (exploratory),0 / 58
+7,Tier-2 genes measurable in GSE100054,47
+7,Tier-2 direction concordance,42.6%  (binomial P = 0.879)
+7,Genes with final status REPRODUCIBLE,0
+7,Genes 'Suggestive' (nominal both),9
+8,"Xiong pathways padj<0.05 (fgsea, anti-conservative)",290
+8,"Xiong Hallmark/KEGG sets replicating in bulk (camera, same direction, P<0.05)",0
+9,Best signature AUC,"Pathway_DOWN_score_inverted: 0.633 [0.36-0.906], perm P = 0.175"
+9,Signatures with permutation P < 0.05,0 of 6
+10,Overall conclusion,NOT REPLICATED: no NK candidate passed the reproducibility criteria

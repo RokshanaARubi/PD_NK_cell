@@ -1,0 +1,63 @@
+======================================================================
+STEP 7 - VALIDATION OF XIONG NK CANDIDATES IN GSE100054 (bulk PBMC)
+Generated: 2026-10-09 18:42:08.203497
+======================================================================
+
+Candidate sets from Xiong NK pseudobulk:
+  tier2_primary: 58 genes (37 up / 21 down in PD)
+  p01_wide: 152 genes (82 up / 70 down in PD)
+NOTE: no Xiong gene passed FDR<0.05, so ALL candidates are exploratory. This step is the first real test of whether any of them are real.
+
+GSE100054: 138745 probes x 19 samples
+  metadata 'platform_id': GPL23126
+Group column used: 'title'  (values: control 1 | control 2 | control 3 | control 4 | control 5 | control 6 | control 7 | control 8 | control 9 | PD 1 | PD 2 | PD 3 | PD 4 | PD 5 | PD 6 | PD 7 | PD 8 | PD 9 | PD 10)
+Samples used: Control=9, PD=10
+
+Expression range: 2.08 to 19.93 | median sample median: 4.06
+Values look already log2-scale -> used as is (verify this against the GEO processing description).
+Between-sample spread of medians (SD): 0.017  (large values would suggest normalisation problems)
+
+--- Probe -> gene mapping ---
+Annotation columns (19): ID, probeset_id, seqname, strand, start, stop, total_probes, gene_assignment, mrna_assignment, swissprot, unigene, GO_biological_process, GO_cellular_component, GO_molecular_function, pathway, protein_domains, category, locus type, SPOT_ID
+ID column used: 'ID' (138745 / 138745 expression probes matched)
+Symbol column used: 'gene_assignment'
+Probes with >=1 gene symbol: 86161 / 138745 | distinct symbols: 88299
+Gene-level matrix: 88299 genes x 19 samples
+
+--- Candidate coverage on GSE100054 ---
+  tier2_primary: 47 / 58 measurable
+    not measurable: AC245014.3, AC253572.2, AC104041.1, AC087239.1, AC012447.1, AF111167.1, SPTY2D1OS, BX890604.2, AC016405.3, AC007262.2, CCDC200
+  p01_wide: 131 / 152 measurable
+    not measurable: AC245014.3, AC253572.2, AC104041.1, AC087239.1, AC008035.1, AC012447.1, AC103591.3, AC008014.1, AF165147.1, AF111167.1, SPTY2D1OS, BX890604.2, AC016405.3, DIPK1A, AL121944.1, CENPX, AC048382.5, AC007262.2, YJU2, AL118516.1, CCDC200
+Genes like AC#####.#, LINC#####, etc. are often missing on arrays, which shrinks the testable set.
+
+NK proxy built from 9 genes: NKG7, GNLY, KLRD1, NCAM1, FCGR3A, PRF1, GZMB, KLRF1, NCR1
+NK proxy PD vs Control: mean Control = 0.192, PD = -0.172, P = 0.402  (descriptive; a difference here means NK abundance, not NK-intrinsic expression, may drive signals)
+
+Model A (PD vs Control) genome-wide: FDR<0.05 = 1 | nominal P<0.05 = 6938 of 88299 genes
+Model B (NK-adjusted): FDR<0.05 = 1 | nominal P<0.05 = 6375
+
+--- Per-candidate verdicts ---
+tier2_primary:
+   Concordant only (not significant)                       18
+   CONTRADICTED (opposite direction, P<0.05)               1
+   Discordant (not significant)                            26
+   Not measurable on platform                              11
+   Replicated (concordant, nominal P<0.05)                 2
+p01_wide:
+   Concordant only (not significant)                       60
+   CONTRADICTED (opposite direction, P<0.05)               7
+   Discordant (not significant)                            55
+   Not measurable on platform                              21
+   Replicated (concordant, nominal P<0.05)                 9
+
+Top tier-2 candidates by bulk P-value:
+
+--- Set-level replication tests ---
+  tier2_primary  testable=47 concordant=20 (42.6%) binomial P=0.879 | Spearman(logFC)=-0.022 | set test: up P=0.948, down P=0.0819
+  p01_wide       testable=131 concordant=69 (52.7%) binomial P=0.3 | Spearman(logFC)=0.025 | set test: up P=0.966, down P=0.0107
+Interpretation guide: ~50% concordance = no replication (chance). Clearly >50% with small P = the Xiong signature has real support even if single genes are underpowered.
+
+Xiong tier-2 signature score (direction-weighted mean z): Wilcoxon PD vs Control P = 0.968  [descriptive here; formal ROC with cross-validation is script 09]
+
+Wrote plots to results/validation/gse100054/plots/
