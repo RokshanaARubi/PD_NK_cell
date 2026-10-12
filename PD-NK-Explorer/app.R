@@ -1,17 +1,6 @@
-# =============================================================
-# app.R
-# PD-NK Explorer
-# An Interactive Platform for Exploring Natural Killer Cell
-# Transcriptomic Biomarkers in Parkinson's Disease
-#
-# Run with: shiny::runApp()
-# =============================================================
 
 source("D:\\academics\\L4S1\\r\\PD-NK-Explorer\\PD-NK-Explorer\\global.R")
 
-# ---------------------------------------------------------------
-# UI
-# ---------------------------------------------------------------
 ui <- bs4DashPage(
   title = APP_TITLE,
   dark = NULL,
@@ -60,9 +49,9 @@ ui <- bs4DashPage(
   )
 )
 
-# ---------------------------------------------------------------
+
 # SERVER
-# ---------------------------------------------------------------
+
 server <- function(input, output, session) {
   mod_dashboard_server("dashboard")
   mod_dataset_server("dataset")

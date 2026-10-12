@@ -1,33 +1,3 @@
-# =============================================================================
-# scripts/01_acquire_datasets.R
-#
-# PD-NK Explorer research project
-# "Cross-Dataset Validation of Natural Killer Cell Transcriptomic Biomarkers
-#  in Parkinson's Disease Using Single-Cell and Bulk RNA Sequencing"
-#
-# PURPOSE: DATA ACQUISITION AND ORGANIZATION ONLY.
-#   This script does NOT perform QC, normalization, clustering, NK-cell
-#   identification, differential expression, pseudobulk aggregation,
-#   pathway analysis, or biomarker/ROC analysis. It only retrieves and
-#   organizes the source files each downstream step will need.
-#
-# SAFE TO RE-RUN: every step checks whether its expected output already
-#   exists before doing any network I/O, so re-running this script will
-#   not re-download files you already have.
-#
-# ACCESSIONS USED IN THIS SCRIPT WERE VERIFIED AGAINST THE ORIGINAL
-# PUBLICATIONS AND OFFICIAL REPOSITORY RECORDS (see chat message / README
-# for the verification notes and source URLs). Two corrections versus a
-# naive literature-only assumption:
-#   - The Moquin-Beaudry cohort is NOT a GEO series. It is deposited as
-#     raw sequencing reads under NCBI SRA/BioProject (SRP525054 /
-#     PRJNA1145007). No processed matrix is publicly available.
-#   - GSE100054 is an Illumina BeadChip MICROARRAY dataset, not RNA-seq.
-# =============================================================================
-
-## ---------------------------------------------------------------------------
-## 0. SETUP
-## ---------------------------------------------------------------------------
 
 required_packages <- c("GEOquery", "rentrez", "httr2", "curl", "jsonlite")
 

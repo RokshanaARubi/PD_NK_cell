@@ -1,35 +1,4 @@
-# =============================================================
-# R/helper_functions.R
-# PD-NK Explorer
-#
-# All data-loading / data-simulation functions live here.
-# ---------------------------------------------------------------
-# HOW TO SWITCH FROM PLACEHOLDER -> REAL DATA:
-#   Each function below is named load_* or simulate_*.
-#   To use real data, replace the BODY of the relevant load_*()
-#   function so it reads your real CSV / RDS / Seurat object
-#   instead of calling the simulate_*() generator, and keep the
-#   same return structure (documented above each function).
-#   No changes to the UI/module code should be required.
-# =============================================================
 
-# ---------------------------------------------------------------
-# 1. DATASET METADATA (Dataset Explorer page)
-# Returns a data.frame: dataset_id, name, tissue, technology,
-#                        n_pd, n_control, description
-#
-# REAL DATA: built from the files your acquisition/validation/QC
-# scripts already produced (data/*/*_sample_metadata.csv and
-# results/data_validation/dataset_validation_summary.csv).
-# No simulation. Where a real count genuinely isn't available yet
-# (Moquin-Beaudry has no disease-group labels locally - only SRA
-# run accessions), n_pd/n_control are reported as NA rather than
-# invented, and the description says so explicitly.
-# ---------------------------------------------------------------
-
-# Safely read a real per-sample metadata CSV, returning NULL (not an
-# error) if the file isn't present - so the app degrades gracefully
-# instead of crashing if a dataset hasn't been downloaded yet.
 .read_real_metadata_csv <- function(path) {
   if (!file.exists(path)) return(NULL)
   tryCatch(read.csv(path, stringsAsFactors = FALSE, check.names = FALSE),
@@ -42,7 +11,6 @@ load_dataset_metadata <- function() {
   gse_meta   <- .read_real_metadata_csv("data/gse100054/GSE100054_sample_metadata.csv")
   moquin_sra <- .read_real_metadata_csv("data/moquin_beaudry/moquin_beaudry_SRA_run_metadata.csv")
   
-  # --- Xiong: real disease-state counts from GEO sample metadata ---
   xiong_n_pd <- xiong_n_control <- NA_integer_
   if (!is.null(xiong_meta) && "disease state:ch1" %in% names(xiong_meta)) {
     ds <- xiong_meta[["disease state:ch1"]]
@@ -58,8 +26,7 @@ load_dataset_metadata <- function() {
     gse_n_control <- sum(grepl("healthy|control", dx, ignore.case = TRUE))
   }
   
-  # --- Moquin-Beaudry: only SRA run-level metadata exists locally;
-  #     no donor/disease labels are available yet, so counts stay NA.
+
   moquin_n_runs <- if (!is.null(moquin_sra)) nrow(moquin_sra) else NA_integer_
   
   data.frame(
@@ -94,12 +61,7 @@ load_dataset_metadata <- function() {
   )
 }
 
-# Per-sample metadata table for a chosen dataset (Dataset Explorer).
-# REAL DATA for xiong and gse100054 (loaded directly from the GEO
-# sample-metadata CSVs already downloaded into data/). For
-# moquin_beaudry, only real SRA run accessions exist locally (no
-# donor-level group/age/sex), so those columns are reported as
-# "Not available" rather than fabricated - never silently simulated.
+
 simulate_sample_metadata <- function(dataset_id, n_pd = 12, n_control = 10) {
   
   if (identical(dataset_id, "xiong")) {
@@ -112,8 +74,8 @@ simulate_sample_metadata <- function(dataset_id, n_pd = 12, n_control = 10) {
           grepl("Normal|Control|Healthy", xiong_meta[["disease state:ch1"]], ignore.case = TRUE) ~ "Control",
           TRUE ~ NA_character_
         ),
-        age = NA_integer_,   # not provided in this GEO series' metadata
-        sex = NA_character_, # not provided in this GEO series' metadata
+        age = NA_integer_,   
+        sex = NA_character_, 
         disease_stage = xiong_meta[["disease state:ch1"]],
         stringsAsFactors = FALSE
       ))
@@ -167,15 +129,7 @@ simulate_sample_metadata <- function(dataset_id, n_pd = 12, n_control = 10) {
 }
 
 
-# =============================================================
-# REAL ANALYSIS RESULTS (sections 2-8)
-#
-# Everything below reads ONE file produced by the pipeline:
-#     results/validated_data/ui_app_data.rds
-# which is built by scripts/10_final_summary.R + scripts/11_export_ui_data.R.
-# Nothing here is simulated. If the file is missing, the pages show an
-# explicit message telling you which script to run.
-# =============================================================
+
 
 .ui_env <- new.env(parent = emptyenv())
 
@@ -192,14 +146,7 @@ simulate_sample_metadata <- function(dataset_id, n_pd = 12, n_control = 10) {
 
 has_real_results <- function() file.exists(file.path("results", "validated_data", "ui_app_data.rds"))
 
-# ---------------------------------------------------------------
-# 2. SINGLE-CELL DATA (Single-Cell Explorer + NK Cell Explorer)
-# Returns list(cells = data.frame(cell_id, UMAP_1, UMAP_2, cell_type,
-#   group, stage, sample_id, cluster), expr = sparse genes x cells,
-#   counts_full, n_cells_total, n_cells_shown, n_nk_total)
-# REAL: Xiong GSE223138 PBMC scRNA-seq after QC; random stratified
-# subsample of cells for plotting speed (counts use ALL cells).
-# ---------------------------------------------------------------
+
 load_singlecell_data <- function() .ui_data()$singlecell
 
 # numeric expression vector for one gene, aligned to sc$cells
@@ -215,14 +162,6 @@ sc_cell_types <- function() {
 
 sc_genes_available <- function(genes) intersect(genes, rownames(load_singlecell_data()$expr))
 
-# ---------------------------------------------------------------
-# 3. DIFFERENTIAL EXPRESSION RESULTS (DGE page)
-# Returns data.frame: gene, log2FC, pvalue, padj, avg_expr, direction,
-#   dataset, comparison, validation_status
-# REAL: (a) Xiong NK-cell pseudobulk edgeR (donor-level), 4 contrasts;
-#       (b) GSE100054 bulk PBMC limma (PD vs Control).
-# padj = Benjamini-Hochberg FDR as computed by edgeR / limma.
-# ---------------------------------------------------------------
 DS_XIONG <- "Xiong NK cells (scRNA-seq pseudobulk)"
 DS_BULK  <- "GSE100054 (bulk PBMC)"
 
@@ -262,14 +201,7 @@ load_pseudobulk <- function() .ui_data()$pseudobulk
 # GSE100054 gene-level expression subset: list(expr = genes x samples, group = factor)
 load_bulk_expression <- function() .ui_data()$bulk_expr
 
-# ---------------------------------------------------------------
-# 4. PATHWAY RESULTS (Pathway Analysis page)
-# REAL: ranked GSEA (fgsea) on all Xiong NK genes; Hallmark, KEGG,
-# Reactome, GO:BP. NES_bulk / P_bulk = same set tested in GSE100054.
-# NOTE: fgsea permutes genes and is anti-conservative for correlated
-# sets; the correlation-aware camera check (script 09) did NOT confirm
-# any of the top Hallmark/KEGG sets in bulk. Shown on the page.
-# ---------------------------------------------------------------
+
 pathway_label <- function(x) {
   x <- sub("^(HALLMARK|KEGG|REACTOME|GOBP)_", "", x)
   x <- tolower(gsub("_", " ", x))
@@ -315,12 +247,7 @@ load_gsea_stats <- function(pathway) {
   g[g$pathway == pathway, ][1, ]
 }
 
-# ---------------------------------------------------------------
-# 5. CROSS-DATASET VALIDATION (Validation page)
-# Returns data.frame: gene, set, tier, logFC_xiong, P_xiong, FDR_xiong,
-#   logFC_bulk, P_bulk, FDR_candset, final_status
-# REAL: every Xiong NK candidate tested in GSE100054 (limma).
-# ---------------------------------------------------------------
+
 load_validation_results <- function() {
   d <- .ui_data()$verdicts
   d[, c("gene", "set", "tier", "logFC_xiong", "P_xiong", "FDR_xiong", "logFC_bulk", "P_bulk",
@@ -329,12 +256,7 @@ load_validation_results <- function() {
 
 load_set_level_tests <- function() .ui_data()$set_level_tests
 
-# ---------------------------------------------------------------
-# 6. BIOMARKER EVALUATION (Biomarker page)
-# REAL: per-gene ROC in GSE100054 (n = 19). Direction is fixed a priori
-# from the Xiong NK result (up in PD -> PD expected higher); it is NOT
-# chosen from the GSE100054 labels.
-# ---------------------------------------------------------------
+
 .auc_fast <- function(score, y) {
   r <- rank(score); n1 <- sum(y); n0 <- sum(!y)
   (sum(r[y]) - n1 * (n1 + 1) / 2) / (n1 * n0)

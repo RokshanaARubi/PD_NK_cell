@@ -1,11 +1,3 @@
-# =============================================================
-# modules/mod_biomarker.R
-# Page 8: Biomarker Analysis (ROC / AUC via pROC)
-# REAL DATA: GSE100054 bulk PBMC (9 Control vs 10 PD). The expected direction
-# of each gene is fixed from the Xiong NK result (not from the GSE100054
-# labels), so AUC < 0.5 means "wrong direction".
-# =============================================================
-
 mod_biomarker_ui <- function(id) {
   ns <- NS(id)
   

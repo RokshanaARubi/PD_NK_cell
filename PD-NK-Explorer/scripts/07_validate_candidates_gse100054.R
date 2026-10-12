@@ -1,39 +1,4 @@
-#!/usr/bin/env Rscript
-# ==============================================================================
-# PD-NK Explorer
-# scripts/07_validate_candidates_gse100054.R
-#
-# METHODOLOGY STEP 7: Independent bulk dataset validation
-#
-# QUESTION:
-#   Do the NK-cell candidate genes found in Xiong scRNA-seq (script 06) show
-#   the SAME direction (and ideally significance) of change in PD vs Control in
-#   an independent bulk PBMC dataset (GSE100054)?
-#
-# WHAT IT DOES
-#   1. Loads Xiong candidates (Tier 2 = primary set; nominal P<0.01 = wider set)
-#   2. Maps GSE100054 probes -> gene symbols (auto-detects the annotation
-#      columns; collapses multi-probe genes by highest mean expression)
-#   3. Reports which candidates are even MEASURABLE on this platform
-#   4. limma (trend + robust) PD vs Control on the gene-level matrix
-#        Model A: ~ group
-#        Model B: ~ group + NK_proxy   (adjusts for NK-cell abundance in PBMC)
-#   5. Per-candidate verdict: direction concordance + replication P-values
-#   6. Set-level replication tests (binomial sign test, limma geneSetTest)
-#   7. Saves everything the later scripts (08 functional, 09 ROC) and the
-#      Shiny "Cross-Dataset Validation" tab need.
-#
-# DOES NOT: touch data/, re-run Xiong analysis, do pathway analysis or ROC.
-#
-# READS
-#   results/de/xiong_nk/nk_candidate_biomarkers.csv
-#   results/de/xiong_nk/de_primary_PD_vs_Control.csv
-#   results/validated_data/gse100054_validated.rds       (from script 02)
-#   data/gse100054/GSE100054_platform_annotation.csv     (from script 01)
-# WRITES
-#   results/validation/gse100054/*.csv, *.txt, plots/*.png
-#   results/validated_data/gse100054_validation.rds      (for Shiny + 08/09)
-# ==============================================================================
+
 
 pkgs <- c("data.table", "dplyr", "stringr", "tibble", "readr", "ggplot2", "tidyr", "limma")
 miss <- pkgs[!vapply(pkgs, requireNamespace, quietly = TRUE, FUN.VALUE = logical(1))]

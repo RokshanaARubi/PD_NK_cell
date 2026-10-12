@@ -1,26 +1,3 @@
-#!/usr/bin/env Rscript
-# ==============================================================================
-# PD-NK Explorer
-# scripts/06_nk_pseudobulk_de_xiong.R
-#
-# PURPOSE:
-#   A) Re-call NK cells in the saved Xiong object with a corrected, data-driven
-#      rule (the earlier "above-median" rule mis-assigned clusters), and verify
-#      the call against canonical marker expression.
-#   B) Methodology step 5: differential expression in NK cells, PD vs Control,
-#      using PSEUDOBULK (one profile per donor) + edgeR quasi-likelihood.
-#   C) Methodology step 6: candidate biomarker shortlist for later validation
-#      in GSE100054 (a separate script).
-#
-# WHY PSEUDOBULK:
-#   Donors, not cells, are the biological replicates. Cell-level tests treat
-#   thousands of cells from 2 vs 4 donors as independent and give wildly
-#   inflated significance. Here n = 2 Control vs 4 PD (2 Early + 2 Late), so
-#   power is LOW. Results are exploratory and must be validated externally.
-#
-# DOES NOT: re-run QC/clustering, touch raw data, do pathway analysis, ROC, or
-#   validation. Reads results/validated_data/xiong_scrna_processed.rds.
-# ==============================================================================
 
 pkgs <- c("Seurat", "Matrix", "dplyr", "stringr", "ggplot2", "tibble", "readr", "edgeR", "limma")
 miss <- pkgs[!vapply(pkgs, requireNamespace, quietly = TRUE, FUN.VALUE = logical(1))]

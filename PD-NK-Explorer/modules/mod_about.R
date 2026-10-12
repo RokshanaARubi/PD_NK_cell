@@ -66,9 +66,8 @@ mod_about_ui <- function(id) {
     ),
     fluidRow(
       bs4Card(
-        title = "Citation & Repository", width = 12, status = "primary", solidHeader = TRUE,
-        p(strong("Citation: "), "Please cite the associated manuscript once published (details to be added)."),
-        p(strong("GitHub Repository: "), a(href = "#", "https://github.com/your-username/PD-NK-Explorer (placeholder)"))
+        title = "Repository", width = 12, status = "primary", solidHeader = TRUE,
+        p(strong("GitHub Repository: "), a(href = "#", "https://github.com/RokshanaARubi/PD_NK_cell.git "))
       )
     )
   )

@@ -1,9 +1,4 @@
-# =============================================================
-# modules/mod_pathway.R
-# Page 6: Pathway Analysis (ranked GSEA)
-# REAL DATA: fgsea on all Xiong NK genes (PD vs Control), Hallmark / KEGG /
-# Reactome / GO:BP (MSigDB), compared with the same sets in GSE100054.
-# =============================================================
+
 
 mod_pathway_ui <- function(id) {
   ns <- NS(id)

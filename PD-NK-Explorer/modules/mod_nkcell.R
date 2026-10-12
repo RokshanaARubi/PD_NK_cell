@@ -1,9 +1,3 @@
-# =============================================================
-# modules/mod_nkcell.R
-# Page 4: NK Cell Explorer (core page)
-# REAL DATA (Xiong GSE223138). NK cells = clusters 12, 3, 5 (NK score,
-# CD3-negative, marker audit in script 06).
-# =============================================================
 
 mod_nkcell_ui <- function(id) {
   ns <- NS(id)

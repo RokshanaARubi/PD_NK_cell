@@ -1,10 +1,4 @@
-# =============================================================
-# modules/mod_singlecell.R
-# Page 3: Single-Cell Explorer
-# REAL DATA: Xiong et al. GSE223138 PBMC scRNA-seq (after QC), exported by
-# scripts/11_export_ui_data.R. UMAP/expression are shown for a random
-# stratified subsample of cells (speed); the distribution plot uses ALL cells.
-# =============================================================
+
 
 mod_singlecell_ui <- function(id) {
   ns <- NS(id)

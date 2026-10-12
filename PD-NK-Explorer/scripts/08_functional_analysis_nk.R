@@ -1,36 +1,3 @@
-#!/usr/bin/env Rscript
-# ==============================================================================
-# PD-NK Explorer
-# scripts/08_functional_analysis_nk.R
-#
-# METHODOLOGY STEP 8: Functional (pathway) analysis
-#
-# WHY RANKED GSEA (not a gene list + enrichment test):
-#   No Xiong NK gene passed FDR < 0.05, so any "significant gene list" would be
-#   an arbitrary cut. GSEA uses ALL ~12k tested genes ranked by evidence, so it
-#   needs no cut-off and is more stable with 2 vs 4 donors.
-#
-# WHAT IT DOES
-#   1. Ranks Xiong NK genes by signed -log10(P)  (PD vs Control, plus stage contrasts)
-#   2. fgsea on Hallmark, KEGG, Reactome, GO:BP (whatever msigdbr can supply)
-#   3. Pathway-level replication: runs the SAME gene sets on GSE100054 (bulk,
-#      ranked by limma t) and checks whether the Xiong direction (NES sign)
-#      is reproduced. Pathway-level is far more powerful than single genes.
-#
-# READS
-#   results/de/xiong_nk/de_primary_PD_vs_Control.csv (+ de_stage_*.csv if present)
-#   results/validated_data/gse100054_validation.rds   (from script 07)
-# WRITES
-#   results/functional/xiong_nk/*.csv, plots/*.png
-#   results/functional/gse100054/gsea_bulk_*.csv
-#   results/functional/pathway_replication.csv
-#   results/validated_data/functional_analysis.rds
-#
-# Install once if needed:
-#   options(timeout = 600)
-#   install.packages("msigdbr")
-#   BiocManager::install("fgsea")
-# ==============================================================================
 
 pkgs <- c("dplyr", "readr", "stringr", "tibble", "ggplot2", "fgsea", "msigdbr")
 miss <- pkgs[!vapply(pkgs, requireNamespace, quietly = TRUE, FUN.VALUE = logical(1))]

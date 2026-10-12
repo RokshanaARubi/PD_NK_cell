@@ -1,26 +1,4 @@
-#!/usr/bin/env Rscript
-# ==============================================================================
-# PD-NK Explorer
-# scripts/02_inspect_datasets.R
-#
-# PURPOSE (AND ONLY PURPOSE):
-#   Inspect and verify the three currently downloaded datasets:
-#     - Xiong et al. 2024            (data/xiong/)
-#     - Moquin-Beaudry et al. 2024/25 (data/moquin_beaudry/)
-#     - GSE100054                    (data/gse100054/)
-#
-#   This script does NOT download, QC, normalize, identify NK cells,
-#   run differential expression, run pathway analysis, or build any
-#   classifier. It only reports what is actually present on disk.
-#
-# SAFETY:
-#   - Read-only with respect to data/. Nothing in data/ is modified,
-#     moved, or deleted.
-#   - Nothing is fabricated. Any value that cannot be determined from
-#     the files themselves is reported as "NOT VERIFIED".
-#   - Safe to re-run: results/data_inspection/ is recreated each run,
-#     but data/ is never touched.
-# ==============================================================================
+
 
 suppressWarnings(suppressMessages({
   library(data.table)

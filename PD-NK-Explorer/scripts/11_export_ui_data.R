@@ -1,31 +1,3 @@
-#!/usr/bin/env Rscript
-# ==============================================================================
-# PD-NK Explorer
-# scripts/11_export_ui_data.R
-#
-# Builds ONE light file for the Shiny app so it never has to load the 55k-cell
-# Seurat object:   results/validated_data/ui_app_data.rds
-#
-# Contains (all REAL, nothing simulated):
-#   singlecell   : UMAP + metadata for a stratified subsample of cells, sparse
-#                  log-normalised expression for ~200 genes, and FULL-data
-#                  cell-type counts
-#   pseudobulk   : NK pseudobulk log2(CPM+1) per donor (for the DGE heatmap)
-#   bulk_expr    : GSE100054 gene-level expression for candidate / top genes
-#   gsea_curves  : running enrichment-score curves for top Xiong pathways
-#   + everything from script 10 (ui_results.rds)
-#
-# Coarse cell types are assigned by explicit marker RULES applied to the cluster
-# marker audit (results/qc/xiong_scrna/cluster_marker_audit_v2.csv), not by hand:
-#   NK       : clusters called NK in script 06
-#   B cells  : mean MS4A1 > 1
-#   Monocytes: mean LYZ > 2 and mean NKG7 < 1
-#   T cells  : mean CD3E > 1
-#   otherwise: "Other / unassigned"  (mixed or unresolved clusters)
-#
-# Run AFTER scripts 06-10.  Safe to re-run.  Needs: Seurat, Matrix, dplyr, readr,
-# stringr, tibble, (msigdbr optional, for GSEA curves)
-# ==============================================================================
 
 suppressPackageStartupMessages({
   library(Seurat); library(Matrix); library(dplyr); library(readr)

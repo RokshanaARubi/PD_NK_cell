@@ -1,9 +1,4 @@
-# =============================================================
-# modules/mod_dge.R
-# Page 5: Differential Expression
-# REAL DATA: (a) Xiong NK-cell donor-level pseudobulk (edgeR QL; 2 Control vs
-# 4 PD, stage contrasts 2 vs 2) and (b) GSE100054 bulk PBMC (limma).
-# =============================================================
+
 
 mod_dge_ui <- function(id) {
   ns <- NS(id)

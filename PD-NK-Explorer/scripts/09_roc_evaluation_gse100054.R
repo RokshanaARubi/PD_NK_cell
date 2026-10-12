@@ -1,29 +1,3 @@
-#!/usr/bin/env Rscript
-# ==============================================================================
-# PD-NK Explorer
-# scripts/09_roc_evaluation_gse100054.R
-#
-# METHODOLOGY STEP 9: ROC evaluation of Xiong-derived NK signatures in GSE100054
-#
-# HONESTY RULES BUILT IN
-#   * Every signature is defined from XIONG results only. GSE100054 labels are
-#     never used to choose genes, so there is no selection leakage.
-#   * Direction is fixed a priori (higher score = PD). AUC < 0.5 therefore means
-#     "wrong direction", not something to flip.
-#   * n = 19 -> AUCs have wide CIs. We report DeLong CI + permutation P + LOOCV.
-#   * Robustness: GSEA (fgsea) permutes genes and is anti-conservative for
-#     correlated sets (ribosomal genes). We re-test top pathways with
-#     limma::camera, which models inter-gene correlation.
-#
-# READS
-#   results/validated_data/gse100054_validation.rds   (script 07)
-#   results/validated_data/functional_analysis.rds    (script 08)
-# WRITES
-#   results/roc/gse100054/*.csv, plots/*.png
-#   results/validated_data/roc_analysis.rds
-#
-# Needs: pROC  (install.packages("pROC")), limma, msigdbr
-# ==============================================================================
 
 pkgs <- c("dplyr", "readr", "stringr", "tibble", "tidyr", "ggplot2", "pROC", "limma", "msigdbr")
 miss <- pkgs[!vapply(pkgs, requireNamespace, quietly = TRUE, FUN.VALUE = logical(1))]

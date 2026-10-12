@@ -1,29 +1,4 @@
-#!/usr/bin/env Rscript
-# ==============================================================================
-# PD-NK Explorer
-# scripts/02_validate_datasets.R
-#
-# PURPOSE (AND ONLY PURPOSE):
-#   Rigorously VALIDATE the actual structure and content of the three
-#   currently acquired datasets (Xiong GSE223138, Moquin-Beaudry, GSE100054).
-#
-#   This script does NOT normalize, does NOT run differential expression,
-#   does NOT run machine learning, does NOT make biological claims beyond
-#   what is directly verifiable from the files on disk.
-#
-#   PPMI is explicitly excluded (controlled access, not yet acquired).
-#
-# HARD SAFETY RULES ENFORCED BY THIS SCRIPT:
-#   - Never overwrite or delete raw downloaded files (read-only access to data/)
-#   - Never download anything (no FASTQ, no PPMI, no new files)
-#   - Never normalize expression values
-#   - Never perform differential expression or statistical testing
-#   - Never perform machine learning
-#   - Never load the large platform .soft.gz files into memory
-#   - Never claim NK-cell validation unless NK labels are actually found
-#   - Never treat a platform annotation / .soft.gz file as an expression matrix
-#   - RDS objects are written ONLY for datasets whose overall_status is READY
-# ==============================================================================
+
 
 suppressWarnings(suppressMessages({
   library(data.table)

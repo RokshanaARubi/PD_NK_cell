@@ -1,9 +1,4 @@
-# =============================================================
-# modules/mod_validation.R
-# Page 7: Cross-Dataset Validation (core novelty page)
-# REAL DATA: Xiong NK pseudobulk candidates tested in GSE100054 (bulk PBMC,
-# limma). Status rules are in scripts/10_final_summary.R.
-# =============================================================
+
 
 STATUS_COLORS <- c("REPRODUCIBLE NK BIOMARKER" = "#27ae60",
                    "Suggestive (nominal in both datasets, not FDR-significant)" = "#f39c12",
@@ -83,13 +78,16 @@ mod_validation_server <- function(id) {
       A <- x$PValue < 0.01; B <- b$P.Value < 0.05
       both <- A & B; same <- both & sign(x$logFC) == sign(b$logFC)
       expected <- sum(A) * mean(B)
-      plot.new(); plot.window(xlim = c(0, 10), ylim = c(0, 10))
-      symbols(c(3.8, 6.2), c(5.5, 5.5), circles = c(2.6, 2.6), inches = FALSE, add = TRUE,
-              fg = c("#c0392b", "#2980b9"), lwd = 2)
-      text(2.6, 5.5, sum(A & !B), cex = 1.6); text(7.4, 5.5, sum(B & !A), cex = 1.6)
-      text(5, 5.5, sprintf("%d\n(%d same dir.)", sum(both), sum(same)), cex = 1.2)
-      text(3, 8.6, "Xiong NK\nP < 0.01", font = 2); text(7, 8.6, "GSE100054\nP < 0.05", font = 2)
-      text(5, 0.6, sprintf("Overlap expected by chance: %.1f  |  observed: %d  |  genes tested in both: %s",
+      # circles drawn as polygons on a fixed 1:1 axis, so they stay round at any card width
+      circle <- function(cx, cy, r) { t <- seq(0, 2 * pi, length.out = 200); cbind(cx + r * cos(t), cy + r * sin(t)) }
+      par(mar = c(1, 1, 3, 1))
+      plot.new(); plot.window(xlim = c(0, 16), ylim = c(0, 10), asp = 1)
+      polygon(circle(6, 5.2, 3.6), col = adjustcolor("#c0392b", 0.25), border = "#c0392b", lwd = 2)
+      polygon(circle(10, 5.2, 3.6), col = adjustcolor("#2980b9", 0.25), border = "#2980b9", lwd = 2)
+      text(4.4, 5.2, sum(A & !B), cex = 1.6); text(11.6, 5.2, sum(B & !A), cex = 1.6)
+      text(8, 5.2, sprintf("%d\n(%d same dir.)", sum(both), sum(same)), cex = 1.2)
+      text(4.6, 9.4, "Xiong NK\nP < 0.01", font = 2); text(11.4, 9.4, "GSE100054\nP < 0.05", font = 2)
+      text(8, 0.2, sprintf("Overlap expected by chance: %.1f  |  observed: %d  |  genes tested in both: %s",
                            expected, sum(both), format(length(shared), big.mark = ",")), cex = 0.9)
       title("Overlap of nominally significant genes")
     })

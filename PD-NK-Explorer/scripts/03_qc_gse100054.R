@@ -1,38 +1,4 @@
-#!/usr/bin/env Rscript
-# ==============================================================================
-# PD-NK Explorer
-# scripts/03_qc_gse100054.R
-#
-# PURPOSE (AND ONLY PURPOSE):
-#   Quality control on GSE100054 - the ONLY dataset marked READY by
-#   scripts/02_validate_datasets.R. Xiong and Moquin-Beaudry are
-#   intentionally NOT touched by this script; they remain PARTIALLY
-#   AVAILABLE pending expression-data acquisition.
-#
-#   This script does NOT normalize, does NOT perform differential
-#   expression, does NOT perform statistical hypothesis testing, does
-#   NOT perform machine learning, and does NOT remove any samples or
-#   features from the data. It only computes descriptive QC metrics,
-#   flags candidates for review, and writes plots/report files.
-#
-# INPUT:
-#   results/validated_data/gse100054_validated.rds
-#   (produced by scripts/02_validate_datasets.R; this script refuses to
-#   proceed if that file is missing or wasn't actually marked READY,
-#   so QC is never silently run on unvalidated data.)
-#
-# HARD SAFETY RULES ENFORCED BY THIS SCRIPT:
-#   - Never modifies data/ (read-only there; this script doesn't even
-#     touch data/ directly - it reads only the validated RDS)
-#   - Never removes samples or genes from the working data - only flags
-#     candidates in separate CSVs for manual review
-#   - Never normalizes, log-transforms, or rescales expression values
-#   - Never performs DE, hypothesis tests, or ML
-#   - Never loads GSE100054_platform_annotation.csv or GPL23126.soft.gz
-#     in full (both are very large; only a small header/preview is read)
-#   - Never fabricates thresholds as "correct" - all outlier cutoffs are
-#     labeled as heuristic and are reported, not silently applied
-# ==============================================================================
+
 
 suppressWarnings(suppressMessages({
   library(data.table)

@@ -1,37 +1,4 @@
-#!/usr/bin/env Rscript
-# ==============================================================================
-# PD-NK Explorer
-# scripts/05_scrna_qc_cluster_nk_xiong.R
-#
-# PURPOSE:
-#   Methodology steps 2-4 on the REAL Xiong et al. 2024 (GSE223138) data,
-#   now that scripts/04_acquire_xiong_scrna_supplementary.R has downloaded
-#   all 6 samples' barcodes/features/matrix.mtx files:
-#     Step 2: Quality Control        (per-cell filtering, real thresholds)
-#     Step 3: Cell Clustering        (PCA -> graph clustering -> UMAP)
-#     Step 4: NK Cell Identification (canonical marker-based, not fabricated)
-#
-#   This script does NOT perform differential expression, pathway analysis,
-#   cross-dataset validation, or biomarker selection (methodology steps
-#   5-10). Those remain separate, later scripts.
-#
-# IMPORTANT ON THRESHOLDS:
-#   QC cutoffs (min genes/cell, max mito%) and clustering resolution are
-#   inherently judgment calls in single-cell analysis. This script uses
-#   adaptive, MAD-based (median absolute deviation) thresholds rather than
-#   arbitrary fixed numbers, and labels every such choice explicitly in the
-#   log. ALWAYS inspect the QC violin plots and UMAP plots this produces
-#   before treating the resulting NK-cell calls as final - they are a
-#   principled first pass, not a validated ground truth.
-#
-# SAFETY:
-#   - Reads only from data/xiong/raw/<GSM>/ (already downloaded, untouched)
-#     and data/xiong/GSE223138_sample_metadata.csv (already validated).
-#   - Does not modify or delete any raw file.
-#   - Does not perform differential expression or any hypothesis testing.
-#   - NK-cell calls require BOTH positive NK markers AND negative T-cell
-#     markers - a cluster is never called "NK" from a single marker alone.
-# ==============================================================================
+
 
 required_packages <- c("Seurat", "Matrix", "dplyr", "stringr", "ggplot2", "tibble", "readr")
 missing_pkgs <- required_packages[!vapply(required_packages, requireNamespace,

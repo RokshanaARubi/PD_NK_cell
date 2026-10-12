@@ -1,36 +1,4 @@
-#!/usr/bin/env Rscript
-# ==============================================================================
-# PD-NK Explorer
-# scripts/04_acquire_xiong_scrna_supplementary.R
-#
-# PURPOSE (AND ONLY PURPOSE):
-#   Complete methodology STEP 1 (Public scRNA-seq Dataset) for Xiong et al.
-#   2024 (GSE223138) by downloading the real, per-sample 10x Genomics
-#   supplementary files (barcodes.tsv.gz, features.tsv.gz, matrix.mtx.gz)
-#   for all 6 GSM samples.
-#
-#   scripts/01_acquire_datasets.R already downloaded the GSE-level series
-#   metadata and attempted GEOquery::getGEOSuppFiles(), but that function
-#   only reaches SERIES-level supplementary files - Xiong's 10x files are
-#   attached at the per-SAMPLE (GSM) level instead, in the
-#   supplementary_file_1 / supplementary_file_2 / supplementary_file_3
-#   columns of GSE223138_sample_metadata.csv (already downloaded and
-#   validated as real in scripts/02_validate_datasets.R).
-#
-#   This script does NOT perform QC, clustering, NK-cell identification,
-#   differential expression, or any analysis. It only downloads and
-#   organizes the files step 1 requires - matching the scope and style
-#   of scripts/01_acquire_datasets.R.
-#
-# SAFETY:
-#   - Only downloads the exact URLs found in the real, already-validated
-#     GSE223138_sample_metadata.csv - never constructs or guesses URLs.
-#   - Skips any file that already exists locally (safe to re-run).
-#   - Never touches Moquin-Beaudry, GSE100054, or PPMI.
-#   - Never overwrites or deletes existing files in data/xiong/.
-#   - Verifies each downloaded file's name matches the expected
-#     barcodes/features/matrix.mtx pattern before counting it as success.
-# ==============================================================================
+
 
 required_packages <- c("curl", "stringr")
 missing_pkgs <- required_packages[!vapply(required_packages, requireNamespace,

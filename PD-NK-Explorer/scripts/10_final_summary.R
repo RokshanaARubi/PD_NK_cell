@@ -1,22 +1,4 @@
-#!/usr/bin/env Rscript
-# ==============================================================================
-# PD-NK Explorer
-# scripts/10_final_summary.R
-#
-# METHODOLOGY STEP 10: Reproducible-biomarker verdict + UI results bundle
-#
-# Collects results of scripts 05-09 into:
-#   results/final/final_summary.csv          key metrics per methodology step
-#   results/final/biomarker_verdicts.csv     every candidate gene with final status
-#   results/final/final_report.md            plain-language report (numbers auto-filled)
-#   results/validated_data/ui_results.rds    bundle for the Shiny app
-#
-# A gene is called a "Reproducible NK biomarker" ONLY if it passes ALL of:
-#   Xiong NK pseudobulk FDR < 0.05  AND  concordant direction in GSE100054
-#   AND GSE100054 FDR (within candidate set) < 0.05  AND  still P<0.05 after NK adjustment.
-# Everything else is labelled honestly (Suggestive / Not replicated / Not measurable).
-# Safe to re-run. Does not modify any upstream result.
-# ==============================================================================
+
 
 pkgs <- c("dplyr", "readr", "stringr", "tibble", "tidyr")
 miss <- pkgs[!vapply(pkgs, requireNamespace, quietly = TRUE, FUN.VALUE = logical(1))]
